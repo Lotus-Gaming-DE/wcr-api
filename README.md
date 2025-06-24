@@ -1,5 +1,7 @@
 # WCR Data API
 
+[![CI](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml)
+
 This project provides a simple REST API to serve data from `data/units.json` and
 `data/categories.json`.
 

@@ -46,6 +46,7 @@ def get_data_loader() -> DataLoader:
     """Return a singleton DataLoader instance."""
     global data_loader
     if data_loader is None:
-        data_loader = DataLoader(Path(__file__).resolve().parent.parent / "data")
+        data_dir = Path(__file__).resolve().parent.parent / "data"
+        data_loader = DataLoader(data_dir)
         data_loader.load()
     return data_loader

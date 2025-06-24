@@ -1,2 +1,4 @@
 pytest
 httpx<0.27
+black
+flake8
