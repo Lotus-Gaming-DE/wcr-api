@@ -1,26 +1,33 @@
 """Application entry point for the WCR Data API."""
 
-import logging
+from __future__ import annotations
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.api import router
 from app.loaders import DataLoadError
+from app.logging import configure_logging, get_logger
+from app.middleware import LoggingMiddleware
+
+logger = get_logger()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Configure logging and load data once on startup."""
-    logging.basicConfig(level=logging.INFO)
+    configure_logging()
     from app.loaders import get_data_loader
 
-    logging.info("Loading unit data")
+    logger = get_logger()
+    logger.info("startup", message="Loading unit data")
     get_data_loader()
     yield
 
 
 app = FastAPI(title="WCR Data API", lifespan=lifespan)
+app.add_middleware(LoggingMiddleware)
 app.include_router(router)
 
 
@@ -42,7 +49,7 @@ async def dataloader_error_handler(
     JSONResponse
         Response with a generic error payload.
     """
-    logging.error("Data loading failed: %s", exc)
+    logger.error("data_load_failed", error=str(exc))
     return JSONResponse(
         status_code=500,
         content={"detail": "Internal server error"},

@@ -58,3 +58,20 @@ def test_dataloader_error_returns_500(monkeypatch):
     resp = client.get("/units")
     assert resp.status_code == 500
     assert resp.json() == {"detail": "Internal server error"}
+
+
+def test_logging_middleware_called(caplog):
+    with TestClient(app) as c:
+        c.get("/units")  # ensure startup has run
+        caplog.set_level("INFO")
+        c.get("/units")
+    import json
+
+    events = []
+    for r in caplog.records:
+        try:
+            data = json.loads(r.getMessage())
+            events.append(data.get("event"))
+        except json.JSONDecodeError:
+            continue
+    assert "response" in events

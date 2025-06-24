@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 - Expanded docstrings for `DataLoader` and API endpoints.
 - Initial changelog tracking features and dependency updates.
 - .gitignore entries for environment files, compiled Python and test cache.
+- Structured JSON logging with ``structlog`` and request/response middleware.
+- Test coverage for the logging middleware.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.

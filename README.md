@@ -23,9 +23,12 @@ pip install -r requirements-dev.txt
 uvicorn main:app --reload
 ```
 
-Logging is configured at **INFO** level by a FastAPI lifespan handler which also
-loads unit data on startup. This ensures the application is ready to serve
-requests immediately and you will see data loading messages in the console.
+Structured logging is initialised during the application's lifespan using
+``structlog``. Logs are emitted in JSON format at **INFO** level by default and
+include timestamps, log level and request details. The lifespan function also
+loads unit data on startup so the API is ready to serve requests immediately.
+The log level can be customised by calling ``configure_logging`` with a
+different level before starting the app.
 
 When running locally the API is available at `http://127.0.0.1:8000`.
 
