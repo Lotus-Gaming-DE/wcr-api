@@ -4,7 +4,11 @@ from typing import Any, Dict, List, Optional
 
 
 class DataLoadError(Exception):
-    """Raised when data files fail to load."""
+    """Raised when data files fail to load.
+
+    The API converts this exception into a ``500`` JSON error response so that
+    stack traces are not exposed to clients.
+    """
 
 
 class DataLoader:
