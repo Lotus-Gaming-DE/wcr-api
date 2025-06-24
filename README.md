@@ -11,10 +11,12 @@ This project provides a simple REST API to serve data from `data/units.json` and
 
 ## Local Development
 
-Install dependencies and start the application with `uvicorn`:
+Install dependencies and start the application with `uvicorn`.
+For formatting, linting and running tests install the development requirements:
 
 ```bash
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 uvicorn main:app --reload
 ```
 
