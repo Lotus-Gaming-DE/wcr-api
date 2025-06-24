@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 - Structured JSON logging with ``structlog`` and request/response middleware.
 - Test coverage for the logging middleware.
 - Pagination for ``GET /units`` via ``offset`` and ``limit`` query parameters.
+- Rotating file logging under ``logs/api.log`` with retention.
+- Pre-commit hooks for Ruff, YAML checks and whitespace cleanup.
+- Test ensuring log file creation on startup.
+- Ruff added to development requirements.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
@@ -20,6 +24,7 @@ All notable changes to this project will be documented in this file.
   ``@app.on_event`` handler.
 - README instructions for running tests with ``python -m pytest`` and corrected
   the Available Endpoints header.
+- Data loader error message now returned in German.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.

@@ -3,7 +3,12 @@
 from __future__ import annotations
 
 import logging
+from logging.handlers import RotatingFileHandler
+from pathlib import Path
 import structlog
+
+
+LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
 
 
 def configure_logging(level: int = logging.INFO) -> None:
@@ -15,7 +20,17 @@ def configure_logging(level: int = logging.INFO) -> None:
         Minimum log level to emit. Defaults to :data:`logging.INFO`.
     """
 
-    logging.basicConfig(format="%(message)s", level=level)
+    LOG_DIR.mkdir(exist_ok=True)
+    log_file = LOG_DIR / "api.log"
+    file_handler = RotatingFileHandler(
+        log_file, maxBytes=1_000_000, backupCount=3
+    )
+    file_handler.setFormatter(logging.Formatter("%(message)s"))
+    logging.basicConfig(
+        handlers=[file_handler, logging.StreamHandler()],
+        format="%(message)s",
+        level=level,
+    )
     structlog.configure(
         processors=[
             structlog.processors.TimeStamper(fmt="iso"),

@@ -2,20 +2,21 @@
 
 [![CI](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml)
 
-This project provides a simple REST API to serve data from `data/units.json` and
-`data/categories.json`.
+Simple FastAPI service exposing unit and category data loaded from the
+`data/` directory. Structured logs are written in JSON to `logs/api.log`
+with rotation enabled.
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## Requirements
 
 - Python 3.11
-- HTTPX for the FastAPI test client (installed via `requirements.txt`)
+- `uvicorn` for local development
+- see `requirements.txt`
 
-## Local Development
+## Development
 
-Install dependencies and start the application with `uvicorn`.
-For formatting, linting and running tests install the development requirements:
+Install runtime and development dependencies and start the API:
 
 ```bash
 pip install -r requirements.txt
@@ -23,105 +24,36 @@ pip install -r requirements-dev.txt
 uvicorn main:app --reload
 ```
 
-Structured logging is initialised during the application's lifespan using
-``structlog``. Logs are emitted in JSON format at **INFO** level by default and
-include timestamps, log level and request details. The lifespan function also
-loads unit data on startup so the API is ready to serve requests immediately.
-The log level can be customised by calling ``configure_logging`` with a
-different level before starting the app.
-
-When running locally the API is available at `http://127.0.0.1:8000`.
-
-### Running Tests
-
-Install development dependencies and run the test suite with `python -m pytest`.
-Running tests as a module ensures the package imports correctly:
-
-```bash
-pip install -r requirements-dev.txt
-python -m pytest
-```
-
-### Code style
-
-Use `pre-commit` to automatically run Black and flake8:
+Install and run pre-commit hooks for formatting and linting:
 
 ```bash
 pre-commit install
-```
-
-Run all hooks manually with:
-
-```bash
 pre-commit run --all-files
 ```
 
-The repository's `.gitignore` excludes environment files, Python bytecode and
-pytest cache directories to avoid committing temporary files.
+Logs are stored in `logs/api.log` and rotated after they reach 1&nbsp;MB.
+An example log entry:
 
-### Data loading
-
-Unit data is loaded once at startup by `DataLoader` via the application's
-lifespan context manager which keeps a dictionary for fast lookups. Use
-`get_unit_by_id` to retrieve a specific unit without iterating over the entire
-list.
-
-If data files cannot be read, the application now returns a 500 JSON response
-with `{"detail": "Internal server error"}` instead of exposing a stack
-trace.
-
-## Hosted API
-
-The API is also deployed and accessible under:
-
-```
-https://wcr-api.up.railway.app
+```json
+{"event": "response", "method": "GET", "path": "/units", "status_code": 200}
 ```
 
-### Available Endpoints
-
-- `GET /units` – list units with optional `offset` and `limit` query params
-  (defaults: `offset=0`, `limit=100`, maximum limit `1000`)
-- `GET /units/{id}` – get a unit by ID
-- `GET /categories` – list categories (factions, types, traits, speeds)
-
-Unit IDs consist of lowercase letters, numbers and hyphens.
-
-All endpoints return JSON.
-
-### Examples
-
-Fetch a subset of units:
+Run the tests with coverage:
 
 ```bash
-curl "https://wcr-api.up.railway.app/units?offset=0&limit=10"
+python -m pytest --cov=app --cov=main
 ```
 
-Fetch a single unit:
+## API Endpoints
 
-```bash
-curl https://wcr-api.up.railway.app/units/ancient-of-war
+- `GET /units` – list units with optional `offset` and `limit`
+- `GET /units/{id}` – fetch a unit by ID
+- `GET /categories` – list category mappings
+
+If data fails to load, the API returns:
+
+```json
+{"detail": "Interner Serverfehler"}
 ```
 
-Fetch categories:
-
-```bash
-curl https://wcr-api.up.railway.app/categories
-```
-
-#### Example usage in Python
-
-```python
-import requests
-
-base_url = "https://wcr-api.up.railway.app"
-
-# list units with pagination
-units = requests.get(f"{base_url}/units", params={"offset": 0, "limit": 10}).json()
-
-# single unit by id
-unit = requests.get(f"{base_url}/units/ancient-of-war").json()
-
-# categories
-categories = requests.get(f"{base_url}/categories").json()
-```
+The API is also deployed at `https://wcr-api.up.railway.app`.

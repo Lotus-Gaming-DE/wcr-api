@@ -52,5 +52,5 @@ async def dataloader_error_handler(
     logger.error("data_load_failed", error=str(exc))
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal server error"},
+        content={"detail": "Interner Serverfehler"},
     )

@@ -78,7 +78,7 @@ def test_dataloader_error_returns_500(monkeypatch):
     monkeypatch.setattr(api_module, "get_data_loader", fail_loader)
     resp = client.get("/units")
     assert resp.status_code == 500
-    assert resp.json() == {"detail": "Internal server error"}
+    assert resp.json() == {"detail": "Interner Serverfehler"}
 
 
 def test_logging_middleware_called(caplog):
@@ -96,3 +96,13 @@ def test_logging_middleware_called(caplog):
         except json.JSONDecodeError:
             continue
     assert "response" in events
+
+
+def test_log_file_created(tmp_path, monkeypatch):
+    import app.logging as log_module
+
+    monkeypatch.setattr(log_module, "LOG_DIR", tmp_path / "logs")
+    with TestClient(app) as c:
+        c.get("/units")
+
+    assert (tmp_path / "logs" / "api.log").exists()
