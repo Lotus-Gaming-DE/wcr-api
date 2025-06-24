@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 - Structured JSON logging with ``structlog`` and request/response middleware.
 - Test coverage for the logging middleware.
 - Pagination for ``GET /units`` via ``offset`` and ``limit`` query parameters.
+- Environment-based log level via ``LOG_LEVEL`` variable.
+- Rotating file handler writing logs to ``logs/api.log``.
+- Security scan in CI with ``pip-audit``.
+- Additional pre-commit hooks (Ruff, check-yaml, trailing-whitespace,
+  end-of-file-fixer).
+- Example ``.env.example`` file.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
@@ -20,6 +26,8 @@ All notable changes to this project will be documented in this file.
   ``@app.on_event`` handler.
 - README instructions for running tests with ``python -m pytest`` and corrected
   the Available Endpoints header.
+- Error response for data load failures now returns German message
+  ``{"detail": "Interner Serverfehler"}``.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.

@@ -1,4 +1,6 @@
 from fastapi.testclient import TestClient
+from pathlib import Path
+import json
 import pytest
 
 from main import app
@@ -78,7 +80,7 @@ def test_dataloader_error_returns_500(monkeypatch):
     monkeypatch.setattr(api_module, "get_data_loader", fail_loader)
     resp = client.get("/units")
     assert resp.status_code == 500
-    assert resp.json() == {"detail": "Internal server error"}
+    assert resp.json() == {"detail": "Interner Serverfehler"}
 
 
 def test_logging_middleware_called(caplog):
@@ -86,12 +88,12 @@ def test_logging_middleware_called(caplog):
         c.get("/units")  # ensure startup has run
         caplog.set_level("INFO")
         c.get("/units")
-    import json
-
     events = []
-    for r in caplog.records:
+    log_path = Path("logs/api.log")
+    assert log_path.exists()
+    for line in log_path.read_text().splitlines():
         try:
-            data = json.loads(r.getMessage())
+            data = json.loads(line)
             events.append(data.get("event"))
         except json.JSONDecodeError:
             continue
