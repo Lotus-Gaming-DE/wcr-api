@@ -8,13 +8,16 @@ This project provides a simple REST API to serve data from `data/units.json` and
 ## Requirements
 
 - Python 3.11
+- HTTPX for the FastAPI test client (installed via `requirements.txt`)
 
 ## Local Development
 
-Install dependencies and start the application with `uvicorn`:
+Install dependencies and start the application with `uvicorn`.
+For formatting, linting and running tests install the development requirements:
 
 ```bash
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 uvicorn main:app --reload
 ```
 
