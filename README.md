@@ -23,8 +23,9 @@ pip install -r requirements-dev.txt
 uvicorn main:app --reload
 ```
 
-Logging is configured at **INFO** level on startup so you will see data
-loading and request information in the console.
+Logging is configured at **INFO** level by a FastAPI lifespan handler which also
+loads unit data on startup. This ensures the application is ready to serve
+requests immediately and you will see data loading messages in the console.
 
 When running locally the API is available at `http://127.0.0.1:8000`.
 
@@ -56,9 +57,10 @@ pytest cache directories to avoid committing temporary files.
 
 ### Data loading
 
-Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
-for fast lookups. Use `get_unit_by_id` to retrieve a specific unit without
-iterating over the entire list.
+Unit data is loaded once at startup by `DataLoader` via the application's
+lifespan context manager which keeps a dictionary for fast lookups. Use
+`get_unit_by_id` to retrieve a specific unit without iterating over the entire
+list.
 
 If data files cannot be read, the application now returns a 500 JSON response
 with `{"detail": "Internal server error"}` instead of exposing a stack
