@@ -22,4 +22,4 @@ jobs:
           black --check .
           flake8
       - name: Test
-        run: pytest -q
+        run: python -m pytest -q
