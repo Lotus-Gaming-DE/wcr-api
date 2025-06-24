@@ -13,6 +13,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -20,8 +25,14 @@ jobs:
       - name: Lint
         run: pre-commit run --show-diff-on-failure --color=always --all-files
       - name: Test
-        run: python -m pytest --cov=app --cov=main -q --cov-report=xml
+        run: PYTHONPATH=src python -m pytest --cov=src/wcr_data_api -q --cov-report=xml
+      - name: Security Audit
+        run: pip-audit -r requirements.txt > audit.txt
       - uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-report
+          path: audit.txt

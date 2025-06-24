@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from app.loaders import DataLoader, DataLoadError
+from wcr_data_api.app.loaders import DataLoader, DataLoadError
 
 
 def test_load_success(tmp_path):

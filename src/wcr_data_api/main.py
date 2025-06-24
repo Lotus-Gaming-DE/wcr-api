@@ -6,10 +6,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.api import router
-from app.loaders import DataLoadError
-from app.logging import configure_logging, get_logger
-from app.middleware import LoggingMiddleware
+from .app.api import router
+from .app.loaders import DataLoadError
+from .app.logging import configure_logging, get_logger
+from .app.middleware import LoggingMiddleware
 
 logger = get_logger()
 
@@ -18,7 +18,7 @@ logger = get_logger()
 async def lifespan(app: FastAPI):
     """Configure logging and load data once on startup."""
     configure_logging()
-    from app.loaders import get_data_loader
+    from .app.loaders import get_data_loader
 
     logger = get_logger()
     logger.info("startup", message="Loading unit data")

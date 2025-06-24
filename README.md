@@ -11,6 +11,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 - Python 3.11
 - HTTPX for the FastAPI test client (installed via `requirements.txt`)
+Copy `.env.example` to `.env` and adjust values before running locally.
 
 ## Local Development
 
@@ -20,7 +21,7 @@ For formatting, linting and running tests install the development requirements:
 ```bash
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
-uvicorn main:app --reload
+uvicorn wcr_data_api.main:app --reload
 ```
 
 Structured logging is initialised during the application's lifespan using
@@ -34,17 +35,18 @@ When running locally the API is available at `http://127.0.0.1:8000`.
 
 ### Running Tests
 
-Install development dependencies and run the test suite with `python -m pytest`.
+Install development dependencies and run the test suite with `PYTHONPATH=src python -m pytest`.
 Running tests as a module ensures the package imports correctly:
 
 ```bash
 pip install -r requirements-dev.txt
-python -m pytest
+PYTHONPATH=src python -m pytest
 ```
 
 ### Code style
 
-Use `pre-commit` to automatically run Black and flake8:
+Use `pre-commit` to automatically run Black, Flake8 and Ruff:
+Additional hooks check YAML, fix end-of-file and trailing whitespace.
 
 ```bash
 pre-commit install
@@ -70,6 +72,7 @@ If data files cannot be read, the application now returns a 500 JSON response
 with `{"detail": "Internal server error"}` instead of exposing a stack
 trace.
 
+Logs are written to `logs/` with rotation; old logs are kept for 7 days.
 ## Hosted API
 
 The API is also deployed and accessible under:

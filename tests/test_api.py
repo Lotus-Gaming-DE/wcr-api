@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 import pytest
 
-from main import app
-from app.loaders import get_data_loader
+from wcr_data_api import app
+from wcr_data_api.app.loaders import get_data_loader
 
 client = TestClient(app)
 
@@ -69,8 +69,8 @@ def test_units_invalid_pagination_params(params):
 
 
 def test_dataloader_error_returns_500(monkeypatch):
-    from app import api as api_module
-    from app.loaders import DataLoadError
+    from wcr_data_api.app import api as api_module
+    from wcr_data_api.app.loaders import DataLoadError
 
     def fail_loader():
         raise DataLoadError("boom")

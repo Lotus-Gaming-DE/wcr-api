@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.2.0] - 2025-06-24
+### Added
+- Adopted `src/` layout under `wcr_data_api` package.
+- Extended pre-commit with Ruff and formatting hooks.
+- CI now caches dependencies and runs `pip-audit`.
+- Added MIT LICENSE and `.env.example`.
+- Logs stored in `logs/` with rotation policy.
+### Changed
+- Documentation updated for new package path and tooling.
+
 ### Added
 - Expanded docstrings for `DataLoader` and API endpoints.
 - `DataLoader.load` now reports malformed JSON via `DataLoadError`.

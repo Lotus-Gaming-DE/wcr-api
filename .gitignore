@@ -12,3 +12,7 @@ __pycache__/
 
 # Test cache
 .pytest_cache/
+
+# Log files
+logs/
+!logs/.gitkeep
