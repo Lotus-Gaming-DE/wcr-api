@@ -8,6 +8,7 @@ This project provides a simple REST API to serve data from `data/units.json` and
 ## Requirements
 
 - Python 3.11
+- HTTPX for the FastAPI test client (installed via `requirements.txt`)
 
 ## Local Development
 
