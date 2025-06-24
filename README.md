@@ -18,6 +18,15 @@ uvicorn main:app --reload
 
 When running locally the API is available at `http://127.0.0.1:8000`.
 
+### Running Tests
+
+Install development dependencies and run the test suite with `pytest`:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ### Data loading
 
 Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
