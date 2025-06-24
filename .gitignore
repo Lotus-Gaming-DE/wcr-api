@@ -12,3 +12,4 @@ __pycache__/
 
 # Test cache
 .pytest_cache/
+logs/

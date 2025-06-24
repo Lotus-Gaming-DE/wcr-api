@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+import logging
+import os
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
@@ -17,7 +19,8 @@ logger = get_logger()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Configure logging and load data once on startup."""
-    configure_logging()
+    level = os.getenv("LOG_LEVEL", "INFO")
+    configure_logging(logging.getLevelName(level.upper()))
     from app.loaders import get_data_loader
 
     logger = get_logger()
@@ -52,5 +55,5 @@ async def dataloader_error_handler(
     logger.error("data_load_failed", error=str(exc))
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal server error"},
+        content={"detail": "Interner Serverfehler"},
     )

@@ -1,6 +1,6 @@
 # WCR Data API
 
-[![CI](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/wcr-data-api/actions/workflows/ci.yml)
+[![CI](https://github.com/<owner>/wcr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/<owner>/wcr-api/actions/workflows/ci.yml)
 
 This project provides a simple REST API to serve data from `data/units.json` and
 `data/categories.json`.
@@ -11,6 +11,8 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 - Python 3.11
 - HTTPX for the FastAPI test client (installed via `requirements.txt`)
+- Copy `.env.example` to `.env` to customise configuration such as
+  ``LOG_LEVEL``.
 
 ## Local Development
 
@@ -24,11 +26,11 @@ uvicorn main:app --reload
 ```
 
 Structured logging is initialised during the application's lifespan using
-``structlog``. Logs are emitted in JSON format at **INFO** level by default and
-include timestamps, log level and request details. The lifespan function also
-loads unit data on startup so the API is ready to serve requests immediately.
-The log level can be customised by calling ``configure_logging`` with a
-different level before starting the app.
+``structlog``. Logs are emitted in JSON format and written both to stdout and
+``logs/api.log``. The log level defaults to ``INFO`` but can be changed by
+setting the ``LOG_LEVEL`` environment variable (e.g. ``DEBUG``) before starting
+the app. The lifespan function also loads unit data on startup so the API is
+ready to serve requests immediately.
 
 When running locally the API is available at `http://127.0.0.1:8000`.
 
@@ -44,7 +46,8 @@ python -m pytest
 
 ### Code style
 
-Use `pre-commit` to automatically run Black and flake8:
+Use `pre-commit` to automatically run Black, Flake8, Ruff and
+other basic checks:
 
 ```bash
 pre-commit install
@@ -55,6 +58,9 @@ Run all hooks manually with:
 ```bash
 pre-commit run --all-files
 ```
+
+Continuous integration runs the same hooks and additionally checks
+dependencies with `pip-audit`.
 
 The repository's `.gitignore` excludes environment files, Python bytecode and
 pytest cache directories to avoid committing temporary files.
@@ -67,7 +73,7 @@ lifespan context manager which keeps a dictionary for fast lookups. Use
 list.
 
 If data files cannot be read, the application now returns a 500 JSON response
-with `{"detail": "Internal server error"}` instead of exposing a stack
+with `{"detail": "Interner Serverfehler"}` instead of exposing a stack
 trace.
 
 ## Hosted API
