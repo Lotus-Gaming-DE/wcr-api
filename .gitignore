@@ -1,0 +1,14 @@
+# Environment files
+.env
+*.env
+.venv/
+env/
+venv/
+.envrc
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+
+# Test cache
+.pytest_cache/
