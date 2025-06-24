@@ -1,7 +1,7 @@
 import logging
 from importlib import reload
 
-from app import logging as logging_mod
+from wcr_api import logging as logging_mod
 
 
 def test_log_level_from_env(monkeypatch):

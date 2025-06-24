@@ -4,7 +4,7 @@ import json
 import pytest
 
 from main import app
-from app.loaders import get_data_loader
+from wcr_api.loaders import get_data_loader
 
 client = TestClient(app)
 
@@ -71,8 +71,8 @@ def test_units_invalid_pagination_params(params):
 
 
 def test_dataloader_error_returns_500(monkeypatch):
-    from app import api as api_module
-    from app.loaders import DataLoadError
+    from wcr_api import api as api_module
+    from wcr_api.loaders import DataLoadError
 
     def fail_loader():
         raise DataLoadError("boom")

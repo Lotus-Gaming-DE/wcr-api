@@ -4,6 +4,8 @@
 
 This project provides a simple REST API to serve data from `data/units.json` and
 `data/categories.json`.
+Application code resides under `src/wcr_api` following the conventional
+`src/` layout.
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
@@ -22,7 +24,7 @@ For formatting, linting and running tests install the development requirements:
 ```bash
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
-uvicorn main:app --reload
+uvicorn main:app --reload  # src layout is detected automatically
 ```
 
 Structured logging is initialised during the application's lifespan using
