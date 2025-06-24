@@ -6,19 +6,36 @@ router = APIRouter()
 
 
 @router.get("/units")
-def list_units():
-    """Return all units."""
+def list_units() -> list[dict]:
+    """Return all units.
+
+    Returns
+    -------
+    list[dict]
+        List of unit objects loaded from :mod:`app.loaders`.
+    """
     loader = get_data_loader()
     return loader.units
 
 
 @router.get("/units/{unit_id}")
-def get_unit(unit_id: str = Path(..., regex="^[a-zA-Z0-9]+$")):
+def get_unit(unit_id: str = Path(..., pattern="^[a-zA-Z0-9]+$")) -> dict:
     """Return unit details by ID.
 
-    The ``unit_id`` path parameter must be alphanumeric. A request with an
-    invalid identifier will return a ``422`` response before reaching this
-    handler.
+    Parameters
+    ----------
+    unit_id:
+        Alphanumeric identifier of the unit.
+
+    Returns
+    -------
+    dict
+        Unit information if found.
+
+    Raises
+    ------
+    HTTPException
+        If no unit with ``unit_id`` exists.
     """
     loader = get_data_loader()
     unit = loader.get_unit_by_id(unit_id)
@@ -28,7 +45,13 @@ def get_unit(unit_id: str = Path(..., regex="^[a-zA-Z0-9]+$")):
 
 
 @router.get("/categories")
-def list_categories():
-    """Return categories data."""
+def list_categories() -> dict:
+    """Return categories data.
+
+    Returns
+    -------
+    dict
+        Mapping of category names to lists of values.
+    """
     loader = get_data_loader()
     return loader.categories
