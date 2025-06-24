@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+import pytest
 
 from main import app
 from app.loaders import get_data_loader
@@ -44,6 +45,26 @@ def test_categories_structure():
 
 def test_invalid_unit_id_validation():
     response = client.get("/units/invalid!")
+    assert response.status_code == 422
+
+
+def test_units_pagination():
+    loader = get_data_loader()
+    response = client.get("/units", params={"offset": 1, "limit": 2})
+    assert response.status_code == 200
+    assert response.json() == loader.units[1:3]
+
+
+@pytest.mark.parametrize(
+    "params",
+    [
+        {"limit": 0},
+        {"limit": 2000},
+        {"offset": -1},
+    ],
+)
+def test_units_invalid_pagination_params(params):
+    response = client.get("/units", params=params)
     assert response.status_code == 422
 
 
