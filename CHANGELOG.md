@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
   ``@app.on_event`` handler.
 - README instructions for running tests with ``python -m pytest`` and corrected
   the Available Endpoints header.
+- Railway start command now sets ``PYTHONPATH=src`` before launching ``uvicorn``.
 - Error response for data load failures now returns German message
   ``{"detail": "Interner Serverfehler"}``.
 
