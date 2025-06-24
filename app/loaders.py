@@ -44,7 +44,8 @@ class DataLoader:
         Raises
         ------
         DataLoadError
-            If the files cannot be read or parsed.
+            If the files cannot be read or parsed. Malformed JSON also
+            results in this exception.
         """
         units_file = self.data_dir / "units.json"
         categories_file = self.data_dir / "categories.json"
@@ -53,7 +54,8 @@ class DataLoader:
                 self.units = json.load(f)
             with categories_file.open("r", encoding="utf-8") as f:
                 self.categories = json.load(f)
-        except OSError as exc:  # file read errors
+        except (OSError, json.JSONDecodeError) as exc:
+            # file read errors or invalid JSON
             raise DataLoadError(str(exc)) from exc
 
         self.units_by_id = {unit["id"]: unit for unit in self.units}

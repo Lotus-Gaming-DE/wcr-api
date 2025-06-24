@@ -34,11 +34,12 @@ When running locally the API is available at `http://127.0.0.1:8000`.
 
 ### Running Tests
 
-Install development dependencies and run the test suite with `pytest`:
+Install development dependencies and run the test suite with `python -m pytest`.
+Running tests as a module ensures the package imports correctly:
 
 ```bash
 pip install -r requirements-dev.txt
-pytest
+python -m pytest
 ```
 
 ### Code style
@@ -77,7 +78,7 @@ The API is also deployed and accessible under:
 https://wcr-api.up.railway.app
 ```
 
--### Available Endpoints
+### Available Endpoints
 
 - `GET /units` – list units with optional `offset` and `limit` query params
   (defaults: `offset=0`, `limit=100`, maximum limit `1000`)

@@ -25,3 +25,14 @@ def test_load_missing_file(tmp_path):
     loader = DataLoader(tmp_path)
     with pytest.raises(DataLoadError):
         loader.load()
+
+
+def test_load_invalid_json(tmp_path):
+    # create invalid JSON in units.json
+    data_dir = tmp_path
+    (data_dir / "units.json").write_text("{invalid")
+    (data_dir / "categories.json").write_text("[]")
+
+    loader = DataLoader(data_dir)
+    with pytest.raises(DataLoadError):
+        loader.load()
