@@ -28,6 +28,12 @@ def test_get_unit_by_id_or_404():
     assert resp_404.status_code == 404
 
 
+def test_get_unit_with_hyphenated_id():
+    response = client.get("/units/ancient-of-war")
+    assert response.status_code == 200
+    assert response.json()["id"] == "ancient-of-war"
+
+
 def test_categories_structure():
     response = client.get("/categories")
     assert response.status_code == 200

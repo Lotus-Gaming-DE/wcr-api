@@ -78,6 +78,8 @@ https://wcr-api.up.railway.app
 - `GET /units/{id}` – get a unit by ID
 - `GET /categories` – list categories (factions, types, traits, speeds)
 
+Unit IDs consist of lowercase letters, numbers and hyphens.
+
 All endpoints return JSON.
 
 ### Examples
@@ -91,7 +93,7 @@ curl https://wcr-api.up.railway.app/units
 Fetch a single unit:
 
 ```bash
-curl https://wcr-api.up.railway.app/units/abomination
+curl https://wcr-api.up.railway.app/units/ancient-of-war
 ```
 
 Fetch categories:
@@ -111,7 +113,7 @@ base_url = "https://wcr-api.up.railway.app"
 units = requests.get(f"{base_url}/units").json()
 
 # single unit by id
-unit = requests.get(f"{base_url}/units/abomination").json()
+unit = requests.get(f"{base_url}/units/ancient-of-war").json()
 
 # categories
 categories = requests.get(f"{base_url}/categories").json()

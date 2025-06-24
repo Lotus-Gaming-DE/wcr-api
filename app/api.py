@@ -19,13 +19,13 @@ def list_units() -> list[dict]:
 
 
 @router.get("/units/{unit_id}")
-def get_unit(unit_id: str = Path(..., pattern="^[a-zA-Z0-9]+$")) -> dict:
+def get_unit(unit_id: str = Path(..., pattern="^[a-zA-Z0-9-]+$")) -> dict:
     """Return unit details by ID.
 
     Parameters
     ----------
     unit_id:
-        Alphanumeric identifier of the unit.
+        Identifier of the unit. IDs may contain letters, numbers and hyphens.
 
     Returns
     -------

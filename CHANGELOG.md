@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Initial changelog tracking features and dependency updates.
 - .gitignore entries for environment files, compiled Python and test cache.
 
+### Changed
+- Unit ID path parameter now accepts hyphenated IDs.
+
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
 
