@@ -5,6 +5,8 @@
 This project provides a simple REST API to serve data from `data/units.json` and
 `data/categories.json`.
 
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
+
 ## Requirements
 
 - Python 3.11
