@@ -51,6 +51,9 @@ Run all hooks manually with:
 pre-commit run --all-files
 ```
 
+The repository's `.gitignore` excludes environment files, Python bytecode and
+pytest cache directories to avoid committing temporary files.
+
 ### Data loading
 
 Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
