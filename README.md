@@ -24,7 +24,7 @@ For formatting, linting and running tests install the development requirements:
 ```bash
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
-uvicorn main:app --reload  # src layout is detected automatically
+PYTHONPATH=src uvicorn main:app --reload
 ```
 
 Structured logging is initialised during the application's lifespan using
@@ -35,6 +35,15 @@ the app. The lifespan function also loads unit data on startup so the API is
 ready to serve requests immediately.
 
 When running locally the API is available at `http://127.0.0.1:8000`.
+
+### Deployment
+
+Deployments on Railway use the following start command to ensure the
+`wcr_api` package is importable:
+
+```bash
+PYTHONPATH=src uvicorn main:app --host 0.0.0.0 --port $PORT
+```
 
 ### Running Tests
 
