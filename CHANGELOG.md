@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
+- Startup now uses a FastAPI lifespan function instead of a deprecated
+  ``@app.on_event`` handler.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
