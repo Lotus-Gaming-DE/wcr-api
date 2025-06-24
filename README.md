@@ -35,6 +35,20 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
+### Code style
+
+Use `pre-commit` to automatically run Black and flake8:
+
+```bash
+pre-commit install
+```
+
+Run all hooks manually with:
+
+```bash
+pre-commit run --all-files
+```
+
 ### Data loading
 
 Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
