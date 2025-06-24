@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - .gitignore entries for environment files, compiled Python and test cache.
 - Structured JSON logging with ``structlog`` and request/response middleware.
 - Test coverage for the logging middleware.
+- Pagination for ``GET /units`` via ``offset`` and ``limit`` query parameters.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.

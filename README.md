@@ -77,9 +77,10 @@ The API is also deployed and accessible under:
 https://wcr-api.up.railway.app
 ```
 
-### Available Endpoints
+-### Available Endpoints
 
-- `GET /units` – list all units
+- `GET /units` – list units with optional `offset` and `limit` query params
+  (defaults: `offset=0`, `limit=100`, maximum limit `1000`)
 - `GET /units/{id}` – get a unit by ID
 - `GET /categories` – list categories (factions, types, traits, speeds)
 
@@ -89,10 +90,10 @@ All endpoints return JSON.
 
 ### Examples
 
-Fetch all units:
+Fetch a subset of units:
 
 ```bash
-curl https://wcr-api.up.railway.app/units
+curl "https://wcr-api.up.railway.app/units?offset=0&limit=10"
 ```
 
 Fetch a single unit:
@@ -114,8 +115,8 @@ import requests
 
 base_url = "https://wcr-api.up.railway.app"
 
-# list units
-units = requests.get(f"{base_url}/units").json()
+# list units with pagination
+units = requests.get(f"{base_url}/units", params={"offset": 0, "limit": 10}).json()
 
 # single unit by id
 unit = requests.get(f"{base_url}/units/ancient-of-war").json()

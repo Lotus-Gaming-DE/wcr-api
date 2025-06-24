@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Query
 
 from .loaders import get_data_loader
 
@@ -6,8 +6,18 @@ router = APIRouter()
 
 
 @router.get("/units")
-def list_units() -> list[dict]:
-    """Return all units.
+def list_units(
+    offset: int = Query(0, ge=0),
+    limit: int = Query(100, ge=1, le=1000),
+) -> list[dict]:
+    """Return a slice of the unit list.
+
+    Parameters
+    ----------
+    offset:
+        Number of items to skip from the start of the list. ``0`` by default.
+    limit:
+        Maximum number of units to return. Values above ``1000`` are rejected.
 
     Returns
     -------
@@ -15,7 +25,8 @@ def list_units() -> list[dict]:
         List of unit objects loaded from :mod:`app.loaders`.
     """
     loader = get_data_loader()
-    return loader.units
+    end = offset + limit
+    return loader.units[offset:end]
 
 
 @router.get("/units/{unit_id}")
