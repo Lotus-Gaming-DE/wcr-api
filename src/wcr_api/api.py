@@ -1,3 +1,5 @@
+"""API route handlers for the WCR Data service."""
+
 from fastapi import APIRouter, HTTPException, Path, Query
 
 from .loaders import get_data_loader

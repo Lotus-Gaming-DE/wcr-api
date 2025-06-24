@@ -8,10 +8,10 @@ import os
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.api import router
-from app.loaders import DataLoadError
-from app.logging import configure_logging, get_logger
-from app.middleware import LoggingMiddleware
+from wcr_api.api import router
+from wcr_api.loaders import DataLoadError
+from wcr_api.logging import configure_logging, get_logger
+from wcr_api.middleware import LoggingMiddleware
 
 logger = get_logger()
 
@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     """Configure logging and load data once on startup."""
     level = os.getenv("LOG_LEVEL", "INFO")
     configure_logging(logging.getLevelName(level.upper()))
-    from app.loaders import get_data_loader
+    from wcr_api.loaders import get_data_loader
 
     logger = get_logger()
     logger.info("startup", message="Loading unit data")

@@ -1,3 +1,5 @@
+"""Utility for loading unit data from JSON files."""
+
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -90,7 +92,7 @@ def get_data_loader() -> DataLoader:
     """
     global data_loader
     if data_loader is None:
-        data_dir = Path(__file__).resolve().parent.parent / "data"
+        data_dir = Path(__file__).resolve().parents[2] / "data"
         data_loader = DataLoader(data_dir)
         data_loader.load()
     return data_loader
