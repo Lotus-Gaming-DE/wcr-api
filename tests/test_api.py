@@ -34,3 +34,21 @@ def test_categories_structure():
     categories = response.json()
     assert isinstance(categories, dict)
     assert {"factions", "types", "traits", "speeds"} <= set(categories.keys())
+
+
+def test_invalid_unit_id_validation():
+    response = client.get("/units/invalid!")
+    assert response.status_code == 422
+
+
+def test_dataloader_error_returns_500(monkeypatch):
+    from app import api as api_module
+    from app.loaders import DataLoadError
+
+    def fail_loader():
+        raise DataLoadError("boom")
+
+    monkeypatch.setattr(api_module, "get_data_loader", fail_loader)
+    resp = client.get("/units")
+    assert resp.status_code == 500
+    assert resp.json() == {"detail": "Internal server error"}

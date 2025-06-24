@@ -18,6 +18,9 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+Logging is configured at **INFO** level on startup so you will see data
+loading and request information in the console.
+
 When running locally the API is available at `http://127.0.0.1:8000`.
 
 ### Running Tests
@@ -34,6 +37,10 @@ pytest
 Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
 for fast lookups. Use `get_unit_by_id` to retrieve a specific unit without
 iterating over the entire list.
+
+If data files cannot be read, the application now returns a 500 JSON response
+with `{"detail": "Internal server error"}` instead of exposing a stack
+trace.
 
 ## Hosted API
 
