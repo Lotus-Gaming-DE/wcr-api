@@ -18,6 +18,12 @@ uvicorn main:app --reload
 
 When running locally the API is available at `http://127.0.0.1:8000`.
 
+### Data loading
+
+Unit data is loaded once at startup by `DataLoader` which keeps a dictionary
+for fast lookups. Use `get_unit_by_id` to retrieve a specific unit without
+iterating over the entire list.
+
 ## Hosted API
 
 The API is also deployed and accessible under:

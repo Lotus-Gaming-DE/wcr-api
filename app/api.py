@@ -16,9 +16,9 @@ def list_units():
 def get_unit(unit_id: str):
     """Return unit details by ID."""
     loader = get_data_loader()
-    for unit in loader.units:
-        if unit.get("id") == unit_id:
-            return unit
+    unit = loader.get_unit_by_id(unit_id)
+    if unit:
+        return unit
     raise HTTPException(status_code=404, detail="Unit not found")
 
 
