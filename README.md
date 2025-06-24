@@ -31,6 +31,9 @@ pre-commit install
 pre-commit run --all-files
 ```
 
+The configuration uses only local hooks so it works offline once the
+development requirements are installed.
+
 Logs are stored in `logs/api.log` and rotated after they reach 1&nbsp;MB.
 An example log entry:
 

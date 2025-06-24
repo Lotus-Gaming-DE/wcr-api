@@ -1,22 +1,31 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
+  - repo: local
     hooks:
       - id: black
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.3.0
-    hooks:
+        name: black
+        entry: black
+        language: system
+        types: [python]
       - id: flake8
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.4.4
-    hooks:
+        name: flake8
+        entry: flake8
+        language: system
+        types: [python]
       - id: ruff
-  - repo: https://github.com/pre-commit/mirrors-check-yaml
-    rev: v1.0.0
-    hooks:
+        name: ruff
+        entry: ruff check
+        language: system
+        types: [python]
       - id: check-yaml
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
+        name: check-yaml
+        entry: check-yaml
+        language: python
+        files: \.(yml|yaml)$
       - id: end-of-file-fixer
+        name: end-of-file-fixer
+        entry: end-of-file-fixer
+        language: python
       - id: trailing-whitespace
+        name: trailing-whitespace
+        entry: trailing-whitespace-fixer
+        language: python

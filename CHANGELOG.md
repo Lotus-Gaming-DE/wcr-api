@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Pre-commit hooks for Ruff, YAML checks and whitespace cleanup.
 - Test ensuring log file creation on startup.
 - Ruff added to development requirements.
+- Local hook configuration to avoid network access during CI.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.

@@ -22,9 +22,7 @@ def configure_logging(level: int = logging.INFO) -> None:
 
     LOG_DIR.mkdir(exist_ok=True)
     log_file = LOG_DIR / "api.log"
-    file_handler = RotatingFileHandler(
-        log_file, maxBytes=1_000_000, backupCount=3
-    )
+    file_handler = RotatingFileHandler(log_file, maxBytes=1_000_000, backupCount=3)
     file_handler.setFormatter(logging.Formatter("%(message)s"))
     logging.basicConfig(
         handlers=[file_handler, logging.StreamHandler()],
