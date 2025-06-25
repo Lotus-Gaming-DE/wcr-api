@@ -71,9 +71,11 @@ pre-commit run --all-files
 ```
 
 Continuous integration runs the same hooks and additionally checks
-dependencies with `pip-audit`. The workflow installs Snyk via
-`snyk/actions/setup@v0.4.0` and runs `snyk test` using the
-`SNYK_TOKEN` secret.
+dependencies with `pip-audit`.
+
+### Security scanning
+
+Added Snyk setup using `snyk/actions/setup@master` for installing Snyk CLI in CI.
 
 ### Automatic dependency updates
 
