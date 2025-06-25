@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Snyk security scanning step in CI workflow.
 - Snyk setup action pinned to ``0.4.0`` to avoid missing tag errors.
 - ``SNYK_TOKEN`` documented in ``.env.example`` for CI.
+- Snyk setup action authenticates using the ``SNYK_TOKEN`` secret.
 - Additional pre-commit hooks (Ruff, check-yaml, trailing-whitespace,
   end-of-file-fixer).
 - Dependabot configuration for Python and GitHub Actions updates.

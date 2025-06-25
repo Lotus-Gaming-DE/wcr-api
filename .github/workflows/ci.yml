@@ -28,6 +28,8 @@ jobs:
         run: bandit -r src -q
       - name: Set up Snyk
         uses: snyk/actions/setup@0.4.0
+        with:
+          token: ${{ secrets.SNYK_TOKEN }}
       - name: Snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
