@@ -71,7 +71,8 @@ pre-commit run --all-files
 ```
 
 Continuous integration runs the same hooks and additionally checks
-dependencies with `pip-audit`.
+dependencies with `pip-audit`. The workflow also installs Snyk and
+runs `snyk test` using the `SNYK_TOKEN` secret.
 
 ### Automatic dependency updates
 
