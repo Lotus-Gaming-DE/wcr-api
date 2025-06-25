@@ -14,7 +14,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 - Python 3.11
 - HTTPX for the FastAPI test client (installed via `requirements.txt`)
 - Copy `.env.example` to `.env` to customise configuration such as
-  ``LOG_LEVEL``.
+  ``LOG_LEVEL`` and provide a ``SNYK_TOKEN`` for CI security scanning.
 
 ## Local Development
 
