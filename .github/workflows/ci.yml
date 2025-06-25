@@ -26,7 +26,7 @@ jobs:
         run: pip-audit -r requirements.txt -r requirements-dev.txt
       - name: Bandit security scan
         run: bandit -r src -q
-      - uses: snyk/actions/setup@master
+      - uses: snyk/actions/setup@v1
       - name: Snyk Test
         run: snyk test
         env:
