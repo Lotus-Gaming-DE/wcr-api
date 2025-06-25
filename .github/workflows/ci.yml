@@ -27,7 +27,7 @@ jobs:
       - name: Bandit security scan
         run: bandit -r src -q
       - name: Set up Snyk
-        uses: snyk/actions/setup@v0.4.0
+        uses: snyk/actions/setup@0.4.0
       - name: Snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
