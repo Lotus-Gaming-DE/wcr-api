@@ -71,7 +71,7 @@ pre-commit run --all-files
 ```
 
 Continuous integration runs the same hooks and additionally checks
-dependencies with `pip-audit`.
+dependencies with `pip-audit` and performs a Snyk security scan.
 
 ### Automatic dependency updates
 
