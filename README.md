@@ -73,6 +73,13 @@ pre-commit run --all-files
 Continuous integration runs the same hooks and additionally checks
 dependencies with `pip-audit`.
 
+### Automatic dependency updates
+
+Dependabot monitors `requirements*.txt` and GitHub Actions workflow files.
+Weekly pull requests keep dependencies secure and up to date. Enable
+Dependabot alerts in the repository settings to receive notifications about
+security issues.
+
 The repository's `.gitignore` excludes environment files, Python bytecode and
 pytest cache directories to avoid committing temporary files.
 
