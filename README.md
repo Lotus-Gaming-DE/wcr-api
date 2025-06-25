@@ -72,14 +72,14 @@ pre-commit run --all-files
 
 Continuous integration runs the same hooks and additionally checks
 dependencies with `pip-audit`. The Snyk token must be defined as a
-repository secret; pull requests from forks don't receive secrets and the
-Snyk step will fail.
+repository secret. Pull requests from forks don't receive secrets, so the
+Snyk test step is skipped.
 
 ### Security scanning
 
 CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
 The `SNYK_TOKEN` secret must be configured in repository settings. Tests from
-forks won't receive this secret and therefore the Snyk step will fail.
+forks won't receive this secret, so the Snyk test step is skipped.
 
 ### Automatic dependency updates
 

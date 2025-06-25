@@ -28,6 +28,7 @@ jobs:
         run: bandit -r src -q
       - uses: snyk/actions/setup@v1
       - name: Snyk Test
+        if: ${{ secrets.SNYK_TOKEN != '' && github.event.pull_request.head.repo.full_name == github.repository }}
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

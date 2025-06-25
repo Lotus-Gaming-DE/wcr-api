@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Security scan in CI with ``pip-audit``.
 - CI: Use `snyk/actions/setup@v1`; fixed action not found errors.
 - CI: Added SNYK_TOKEN env for Snyk Test; clarified fork tests won't have secrets.
+- CI: Skip Snyk test in forked PRs to prevent missing-secret auth errors.
 - Additional pre-commit hooks (Ruff, check-yaml, trailing-whitespace,
   end-of-file-fixer).
 - Dependabot configuration for Python and GitHub Actions updates.
