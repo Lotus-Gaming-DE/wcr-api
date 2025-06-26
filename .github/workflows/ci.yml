@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: sbom.xml
+          path: sbom.*
       - name: Bandit security scan
         run: bandit -r src -q
       - name: Install Snyk CLI
