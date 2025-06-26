@@ -78,6 +78,8 @@ and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
 materials. CI runs the same hooks and then streams Railway logs with
 `railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
+If more logs are needed, trigger the `Railway Logs` workflow from the Actions
+tab to capture production logs for the `bot` service.
 
 ### Security scanning
 

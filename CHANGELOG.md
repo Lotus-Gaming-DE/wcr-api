@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
   `SNYK_TOKEN`.
 - Example ``.env.example`` file.
 - Project moved to ``src/wcr_api`` package layout.
+- Manual workflow to fetch production Railway logs on demand.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
