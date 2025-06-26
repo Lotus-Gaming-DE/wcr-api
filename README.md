@@ -75,7 +75,7 @@ pre-commit run --all-files
 The `pip-audit` hook (version `2.9.0`) scans `requirements.txt` and
 outputs a column formatted report. It installs `pip-audit[cyclonedx]`
 and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
-materials. CI runs the same hooks and then streams Railway logs with
+materials via `cyclonedx-py`. CI runs the same hooks and then streams Railway logs with
 `railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
 If more logs are needed, trigger the `Railway Logs` workflow from the Actions
@@ -83,7 +83,7 @@ tab to capture production logs for the `bot` service.
 
 ### Security scanning
 
-CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
+CI installs the Snyk CLI using `npm install -g snyk` and runs `snyk test`.
 Authentication is provided via the `SNYK_TOKEN` environment variable set as a
 repository secret. Pull requests from forks do not receive secrets, therefore
 the Snyk step is skipped in that scenario.
