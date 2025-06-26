@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 - CI caches pre-commit hooks for faster runs.
 - CI streams Railway logs to `logs/latest_railway.log` and uploads the file as
   an artifact.
+- Dependabot update schedule changed to daily.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
