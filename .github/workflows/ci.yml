@@ -47,3 +47,11 @@ jobs:
         with:
           name: coverage
           path: coverage.xml
+      - name: Capture Railway logs
+        run: |
+          mkdir -p logs
+          timeout 30s railway logs --follow > logs/latest_railway.log || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: railway-logs
+          path: logs/latest_railway.log
