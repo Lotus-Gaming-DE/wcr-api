@@ -99,8 +99,9 @@ Daily pull requests keep dependencies secure and up to date. Enable
 Dependabot alerts in the repository settings to receive notifications about
 security issues.
 
-The repository's `.gitignore` excludes environment files, Python bytecode and
-pytest cache directories to avoid committing temporary files.
+The repository's `.gitignore` excludes environment files, Python bytecode,
+pytest cache directories and the `data/` folder to avoid committing temporary
+files.
 
 ### Data loading
 
@@ -112,6 +113,18 @@ list.
 If data files cannot be read, the application now returns a 500 JSON response
 with `{"detail": "Interner Serverfehler"}` instead of exposing a stack
 trace.
+
+### Data files
+
+Example JSON data for local development resides in `data/units.json` and
+`data/categories.json`. The `data/` directory is gitignored so you can replace
+these files without committing them. If the directory is missing or you wish to
+refresh the contents, download the latest data from the live API:
+
+```bash
+curl -L https://wcr-api.up.railway.app/units > data/units.json
+curl -L https://wcr-api.up.railway.app/categories > data/categories.json
+```
 
 ## Hosted API
 
