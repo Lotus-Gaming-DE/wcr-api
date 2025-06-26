@@ -1,6 +1,6 @@
 # WCR Data API
 
-[![CI](https://github.com/<owner>/wcr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/<owner>/wcr-api/actions/workflows/ci.yml)
+[![CI](https://github.com/Lotus-Gaming-DE/wcr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/Lotus-Gaming-DE/wcr-api/actions/workflows/ci.yml)
 
 This project provides a simple REST API to serve data from `data/units.json` and
 `data/categories.json`.
