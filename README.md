@@ -88,9 +88,10 @@ the Snyk step is skipped in that scenario.
 
 Dependabot checks `requirements*.txt` and workflow files as configured in
 `.github/dependabot.yml`. It opens daily pull requests that trigger the full CI
-pipeline with linting, tests and `pip-audit`. CI caches pip downloads and
-pre-commit hooks for faster runs and stores build logs under `logs/`.
-Enable Dependabot alerts in repository settings to receive security
+pipeline with linting, tests and `pip-audit`. These updates run the same
+workflow as any other pull request ensuring quality gates are met. CI caches
+pip downloads and pre-commit hooks for faster runs and stores build logs under
+`logs/`. Enable Dependabot alerts in repository settings to receive security
 notifications.
 
 The repository's `.gitignore` excludes environment files, Python bytecode,
