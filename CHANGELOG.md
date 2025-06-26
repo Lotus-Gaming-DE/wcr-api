@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Rotating file handler writing logs to ``logs/api.log``.
 - Security scan in CI with ``pip-audit``.
 - Pre-commit hook for ``pip-audit`` using CycloneDX SBOM support.
+- CI: CycloneDX SBOM generation uploaded as `sbom.xml` artifact.
 - CI: Use `snyk/actions/setup@v1`; fixed action not found errors.
 - CI: Added SNYK_TOKEN env for Snyk Test; clarified fork tests won't have secrets.
 - CI: Skip Snyk test in forked PRs to prevent missing-secret auth errors.

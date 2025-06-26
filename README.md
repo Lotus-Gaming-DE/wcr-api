@@ -72,7 +72,9 @@ pre-commit run --all-files
 
 The `pip-audit` hook scans `requirements.txt` and outputs a column
 formatted report. It installs `pip-audit[cyclonedx]` and
-`cyclonedx-bom` so CI can also generate a CycloneDX SBOM.
+`cyclonedx-bom` so CI can generate a CycloneDX software bill of
+materials. Continuous integration runs `cyclonedx-bom` after the audit
+step to create `sbom.xml` and uploads the file as a build artifact.
 
 Continuous integration runs the same hooks. The Snyk token must be
 defined as a repository secret. Pull requests from forks don't receive

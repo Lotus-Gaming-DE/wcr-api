@@ -31,6 +31,12 @@ jobs:
           pip install -r requirements.txt -r requirements-dev.txt
       - name: Security audit
         run: pip-audit -r requirements.txt -r requirements-dev.txt
+      - name: Generate SBOM
+        run: cyclonedx-bom -r requirements.txt -r requirements-dev.txt -o sbom.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.xml
       - name: Bandit security scan
         run: bandit -r src -q
       - uses: snyk/actions/setup@v1
