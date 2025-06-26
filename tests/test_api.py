@@ -29,6 +29,7 @@ def test_get_unit_by_id_or_404():
 
     resp_404 = client.get("/units/nonexistent")
     assert resp_404.status_code == 404
+    assert resp_404.json() == {"detail": "Einheit nicht gefunden"}
 
 
 def test_get_unit_with_hyphenated_id():

@@ -108,7 +108,8 @@ list.
 
 If data files cannot be read, the application now returns a 500 JSON response
 with `{"detail": "Interner Serverfehler"}` instead of exposing a stack
-trace.
+trace. Requests for unknown unit IDs return a 404 response containing
+`{"detail": "Einheit nicht gefunden"}`.
 
 ### Data files
 

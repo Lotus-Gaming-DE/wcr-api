@@ -54,7 +54,7 @@ def get_unit(unit_id: str = Path(..., pattern="^[a-zA-Z0-9-]+$")) -> dict:
     unit = loader.get_unit_by_id(unit_id)
     if unit:
         return unit
-    raise HTTPException(status_code=404, detail="Unit not found")
+    raise HTTPException(status_code=404, detail="Einheit nicht gefunden")
 
 
 @router.get("/categories")
