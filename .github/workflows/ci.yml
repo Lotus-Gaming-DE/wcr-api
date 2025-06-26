@@ -52,6 +52,12 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         if: ${{ env.SNYK_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) }}
         run: snyk test
+      - name: Install Railway CLI
+        run: npm install -g railway
+      - name: Login to Railway
+        run: railway login --token "$RAILWAY_TOKEN"
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Lint
         run: pre-commit run --all-files
       - name: Test
@@ -63,6 +69,8 @@ jobs:
           name: coverage
           path: coverage.xml
       - name: Capture Railway logs
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           mkdir -p logs
           railway logs --follow > logs/latest_railway.log
