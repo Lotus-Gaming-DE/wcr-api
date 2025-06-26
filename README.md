@@ -73,31 +73,23 @@ pre-commit run --all-files
 The `pip-audit` hook scans `requirements.txt` and outputs a column
 formatted report. It installs `pip-audit[cyclonedx]` and
 `cyclonedx-bom` so CI can generate a CycloneDX software bill of
-materials. Continuous integration runs `cyclonedx-bom` after the audit
-step to create `sbom.xml` and uploads the file as a build artifact.
-
-Continuous integration runs the same hooks. The Snyk token must be
-defined as a repository secret. Pull requests from forks don't receive
-secrets, so the Snyk test step is skipped.
-Continuous integration runs the same hooks and additionally checks
-dependencies with `pip-audit`. The Snyk token must be defined as a
-repository secret. Pull requests from forks don't receive secrets, so the
-Snyk test step is skipped.
-CI also streams Railway logs with `railway logs --follow > logs/latest_railway.log`
-and uploads the file as a build artifact.
+materials. CI runs the same hooks and then streams Railway logs with
+`railway logs --follow > logs/latest_railway.log` which is uploaded as a
+build artifact.
 
 ### Security scanning
 
 CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
-The `SNYK_TOKEN` secret must be configured in repository settings. Tests from
-forks won't receive this secret, so the Snyk test step is skipped.
+Authentication is provided via the `SNYK_TOKEN` environment variable set as a
+repository secret. Pull requests from forks do not receive secrets, therefore
+the Snyk step is skipped in that scenario.
 
 ### Automatic dependency updates
 
-Dependabot monitors `requirements*.txt` and GitHub Actions workflow files.
-Daily pull requests keep dependencies secure and up to date. Enable
-Dependabot alerts in the repository settings to receive notifications about
-security issues.
+Dependabot checks `requirements*.txt` and workflow files as configured in
+`.github/dependabot.yml`. It opens daily pull requests that trigger the full CI
+pipeline. Enable Dependabot alerts in repository settings to receive security
+notifications.
 
 The repository's `.gitignore` excludes environment files, Python bytecode,
 pytest cache directories and the `data/` folder to avoid committing temporary
