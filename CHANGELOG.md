@@ -41,6 +41,8 @@ All notable changes to this project will be documented in this file.
 - CI caches pre-commit hooks for faster runs.
 - CI streams Railway logs to `logs/latest_railway.log` and uploads the file as
   an artifact.
+- CI caches pip downloads alongside pre-commit hooks for faster builds.
+- Documented Dependabot's daily update mechanism and CI caching in README.
 - Dependabot update schedule changed to daily.
 - Pinned `pip-audit` to version 2.9.0 for consistent SBOM generation.
 
