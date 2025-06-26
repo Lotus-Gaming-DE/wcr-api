@@ -57,8 +57,8 @@ python -m pytest
 
 ### Code style
 
-Use `pre-commit` to automatically run Black, Flake8, Ruff and
-other basic checks:
+Use `pre-commit` to automatically run Black, Flake8, Ruff,
+`pip-audit` and other basic checks:
 
 ```bash
 pre-commit install
@@ -70,6 +70,13 @@ Run all hooks manually with:
 pre-commit run --all-files
 ```
 
+The `pip-audit` hook scans `requirements.txt` and outputs a column
+formatted report. It installs `pip-audit[cyclonedx]` and
+`cyclonedx-bom` so CI can also generate a CycloneDX SBOM.
+
+Continuous integration runs the same hooks. The Snyk token must be
+defined as a repository secret. Pull requests from forks don't receive
+secrets, so the Snyk test step is skipped.
 Continuous integration runs the same hooks and additionally checks
 dependencies with `pip-audit`. The Snyk token must be defined as a
 repository secret. Pull requests from forks don't receive secrets, so the
