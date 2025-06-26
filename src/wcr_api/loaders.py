@@ -60,6 +60,7 @@ class DataLoader:
             # file read errors or invalid JSON
             raise DataLoadError(str(exc)) from exc
 
+        # build an index so ``get_unit_by_id`` performs constant-time lookups
         self.units_by_id = {unit["id"]: unit for unit in self.units}
 
     def get_unit_by_id(self, unit_id: str) -> Optional[Dict[str, Any]]:
@@ -92,6 +93,9 @@ def get_data_loader() -> DataLoader:
     """
     global data_loader
     if data_loader is None:
+        # resolve the project's root directory and locate the bundled data
+        # files. ``parents[2]`` yields the repository root when called from
+        # inside ``src/wcr_api``.
         data_dir = Path(__file__).resolve().parents[2] / "data"
         data_loader = DataLoader(data_dir)
         data_loader.load()

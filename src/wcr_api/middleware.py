@@ -13,6 +13,8 @@ class LoggingMiddleware(BaseHTTPMiddleware):
     """Log incoming HTTP requests and responses."""
 
     async def dispatch(self, request, call_next):
+        """Log the request and response including the processing time."""
+        # record the start time so we can log how long the request took
         start = time.perf_counter()
         logger.info("request", method=request.method, path=request.url.path)
         try:
@@ -25,6 +27,7 @@ class LoggingMiddleware(BaseHTTPMiddleware):
                 exc_info=True,
             )
             raise
+        # convert runtime to milliseconds for readability in logs
         duration = (time.perf_counter() - start) * 1000
         logger.info(
             "response",
