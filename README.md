@@ -75,7 +75,7 @@ pre-commit run --all-files
 The `pip-audit` hook (version `2.9.0`) scans `requirements.txt` and
 outputs a column formatted report. It installs `pip-audit[cyclonedx]`
 and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
-materials via `cyclonedx-py -r -o sbom.xml`. CI runs the same hooks and then streams Railway logs with
+materials via `cyclonedx-py requirements -r -o sbom.xml`. CI runs the same hooks and then streams Railway logs with
 `railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
 If more logs are needed, trigger the `Railway Logs` workflow from the Actions
