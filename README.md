@@ -33,6 +33,12 @@ setting the ``LOG_LEVEL`` environment variable (e.g. ``DEBUG``) before starting
 the app. The lifespan function also loads unit data on startup so the API is
 ready to serve requests immediately.
 
+## Utility Scripts
+
+Run `python scripts/fetch_data.py --help` to download the latest unit and
+category data from the deployed API. By default the script writes the JSON files
+to the `data/` directory.
+
 ## Usage
 
 When running locally the API is available at `http://127.0.0.1:8000`.
@@ -83,7 +89,7 @@ tab to capture production logs for the `bot` service.
 
 ### Security scanning
 
-CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
+CI installs the Snyk CLI via `npm install -g snyk` and runs `snyk test`.
 Authentication is provided via the `SNYK_TOKEN` environment variable set as a
 repository secret. Pull requests from forks do not receive secrets, therefore
 the Snyk step is skipped in that scenario.
@@ -91,8 +97,9 @@ the Snyk step is skipped in that scenario.
 ### Automatic dependency updates
 
 Dependabot checks `requirements*.txt` and workflow files as configured in
-`.github/dependabot.yml`. It opens daily pull requests that trigger the full CI
-pipeline with linting, tests and `pip-audit`. These updates run the same
+`.github/dependabot.yml`. Python dependencies are updated daily while GitHub
+Actions workflows are updated weekly. Dependabot pull requests trigger the full
+CI pipeline with linting, tests and `pip-audit`. These updates run the same
 workflow as any other pull request ensuring quality gates are met. CI caches
 pip downloads and pre-commit hooks for faster runs and stores build logs under
 `logs/`. Enable Dependabot alerts in repository settings to receive security
@@ -118,12 +125,11 @@ trace. Requests for unknown unit IDs return a 404 response containing
 
 Example JSON data for local development resides in `data/units.json` and
 `data/categories.json`. The `data/` directory is gitignored so you can replace
-these files without committing them. If the directory is missing or you wish to
-refresh the contents, download the latest data from the live API:
+these files without committing them. Use the `fetch_data.py` utility to refresh
+the contents:
 
 ```bash
-curl -L https://wcr-api.up.railway.app/units > data/units.json
-curl -L https://wcr-api.up.railway.app/categories > data/categories.json
+python scripts/fetch_data.py
 ```
 
 ### Hosted API

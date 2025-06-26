@@ -18,12 +18,12 @@ jobs:
         run: railway login --token "$RAILWAY_TOKEN"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      - name: Stream production logs
-        run: |
-          mkdir -p logs
-          railway logs --environment production --service bot --detach > logs/latest_railway.log || true
+      - name: Stream railway logs
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          mkdir -p logs
+          railway logs --follow > logs/latest_railway.log
       - uses: actions/upload-artifact@v4
         with:
           name: railway-latest-log

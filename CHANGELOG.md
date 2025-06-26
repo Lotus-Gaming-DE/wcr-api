@@ -31,6 +31,9 @@ All notable changes to this project will be documented in this file.
 - Example ``.env.example`` file.
 - Project moved to ``src/wcr_api`` package layout.
 - Manual workflow to fetch production Railway logs on demand.
+- Utility script `scripts/fetch_data.py` to download sample data.
+- Updated CI workflow to install Snyk via npm and generate SBOM with cyclonedx-py.
+- Dependabot action updates now run weekly.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
