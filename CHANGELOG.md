@@ -35,6 +35,8 @@ All notable changes to this project will be documented in this file.
 - Error response for data load failures now returns German message
   ``{"detail": "Interner Serverfehler"}``.
 - CI caches pre-commit hooks for faster runs.
+- CI streams Railway logs to `logs/latest_railway.log` and uploads the file as
+  an artifact.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
