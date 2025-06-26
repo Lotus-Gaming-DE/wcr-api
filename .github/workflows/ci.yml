@@ -48,7 +48,9 @@ jobs:
       - name: Lint
         run: pre-commit run --show-diff-on-failure --color=always --all-files
       - name: Test
-        run: python -m pytest --cov=src/wcr_api --cov=main -q --cov-report=xml
+        run: |
+          python -m pytest --cov=. --cov-report=term-missing:skip-covered \
+            --cov-report=xml
       - uses: actions/upload-artifact@v4
         with:
           name: coverage

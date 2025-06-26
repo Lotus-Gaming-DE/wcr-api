@@ -3,6 +3,7 @@ flake8
 pytest
 pytest-cov
 pytest-timeout
+pytest-asyncio
 pre-commit
 ruff
 pip-audit==2.9.0

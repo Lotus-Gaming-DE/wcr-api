@@ -47,12 +47,13 @@ PYTHONPATH=src uvicorn main:app --host 0.0.0.0 --port $PORT
 
 ### Running Tests
 
-Install development dependencies and run the test suite with `python -m pytest`.
-Running tests as a module ensures the package imports correctly:
+Install development dependencies and run the test suite with coverage enabled.
+Running tests as a module ensures the package imports correctly and collects
+coverage metrics:
 
 ```bash
 pip install -r requirements-dev.txt
-python -m pytest
+python -m pytest --cov=. --cov-report=term-missing:skip-covered
 ```
 
 ### Code style
