@@ -70,9 +70,9 @@ Run all hooks manually with:
 pre-commit run --all-files
 ```
 
-The `pip-audit` hook scans `requirements.txt` and outputs a column
-formatted report. It installs `pip-audit[cyclonedx]` and
-`cyclonedx-bom` so CI can generate a CycloneDX software bill of
+The `pip-audit` hook (version `2.9.0`) scans `requirements.txt` and
+outputs a column formatted report. It installs `pip-audit[cyclonedx]`
+and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
 materials. CI runs the same hooks and then streams Railway logs with
 `railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
