@@ -44,6 +44,8 @@ All notable changes to this project will be documented in this file.
 - CI caches pip downloads alongside pre-commit hooks for faster builds.
 - Documented Dependabot's daily update mechanism and CI caching in README.
 - Dependabot update schedule changed to daily.
+- Dependabot pull requests run the full CI pipeline with linting, tests and
+  `pip-audit`.
 - Pinned `pip-audit` to version 2.9.0 for consistent SBOM generation.
 
 ### Removed
