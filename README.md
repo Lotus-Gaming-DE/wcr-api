@@ -74,6 +74,8 @@ Continuous integration runs the same hooks and additionally checks
 dependencies with `pip-audit`. The Snyk token must be defined as a
 repository secret. Pull requests from forks don't receive secrets, so the
 Snyk test step is skipped.
+CI also streams Railway logs with `railway logs --follow > logs/latest_railway.log`
+and uploads the file as a build artifact.
 
 ### Security scanning
 
