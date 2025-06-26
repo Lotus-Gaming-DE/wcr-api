@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 - Additional pre-commit hooks (Ruff, check-yaml, trailing-whitespace,
   end-of-file-fixer).
 - Dependabot configuration for Python and GitHub Actions updates.
+- Documentation sections describing Dependabot usage and Snyk scanning via
+  `SNYK_TOKEN`.
 - Example ``.env.example`` file.
 - Project moved to ``src/wcr_api`` package layout.
 
