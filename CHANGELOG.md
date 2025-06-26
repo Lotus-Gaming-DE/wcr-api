@@ -34,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - Railway start command now sets ``PYTHONPATH=src`` before launching ``uvicorn``.
 - Error response for data load failures now returns German message
   ``{"detail": "Interner Serverfehler"}``.
+- CI caches pre-commit hooks for faster runs.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
