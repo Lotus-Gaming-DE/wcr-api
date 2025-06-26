@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 20
       - name: Install Railway CLI
-        run: npm install -g railway
+        run: npm install -g @railway/cli
       - name: Login to Railway
         run: railway login --token "$RAILWAY_TOKEN"
         env:
