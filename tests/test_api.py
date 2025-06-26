@@ -89,6 +89,7 @@ def test_logging_middleware_called(caplog):
         c.get("/units")  # ensure startup has run
         caplog.set_level("INFO")
         c.get("/units")
+    # parse the JSON log lines written by the middleware
     events = []
     log_path = Path("logs/api.log")
     assert log_path.exists()

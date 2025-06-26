@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 - Additional pre-commit hooks (Ruff, check-yaml, trailing-whitespace,
   end-of-file-fixer).
 - Dependabot configuration for Python and GitHub Actions updates.
+- Clarifying comments in middleware, data loading and tests.
+- Comment describing `LOG_LEVEL` in `.env.example`.
 - Documentation sections describing Dependabot usage and Snyk scanning via
   `SNYK_TOKEN`.
 - Example ``.env.example`` file.
@@ -47,6 +49,7 @@ All notable changes to this project will be documented in this file.
 - Dependabot pull requests run the full CI pipeline with linting, tests and
   `pip-audit`.
 - Pinned `pip-audit` to version 2.9.0 for consistent SBOM generation.
+- README reorganised into Setup, Usage, Tests and Deployment sections.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.

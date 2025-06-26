@@ -2,24 +2,23 @@
 
 [![CI](https://github.com/Lotus-Gaming-DE/wcr-api/actions/workflows/ci.yml/badge.svg)](https://github.com/Lotus-Gaming-DE/wcr-api/actions/workflows/ci.yml)
 
-This project provides a simple REST API to serve data from `data/units.json` and
-`data/categories.json`.
-Application code resides under `src/wcr_api` following the conventional
-`src/` layout.
+## Overview
+
+This project provides a simple REST API to serve data from
+`data/units.json` and `data/categories.json`. Application code lives under
+`src/wcr_api` following the conventional `src/` layout.
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
-## Requirements
+## Setup
 
 - Python 3.11
 - HTTPX for the FastAPI test client (installed via `requirements.txt`)
 - Copy `.env.example` to `.env` to customise configuration such as
   ``LOG_LEVEL``.
 
-## Local Development
-
-Install dependencies and start the application with `uvicorn`.
-For formatting, linting and running tests install the development requirements:
+Install dependencies and start the application with `uvicorn`. For
+formatting, linting and running tests install the development requirements:
 
 ```bash
 pip install -r requirements.txt
@@ -34,18 +33,11 @@ setting the ``LOG_LEVEL`` environment variable (e.g. ``DEBUG``) before starting
 the app. The lifespan function also loads unit data on startup so the API is
 ready to serve requests immediately.
 
+## Usage
+
 When running locally the API is available at `http://127.0.0.1:8000`.
 
-### Deployment
-
-Deployments on Railway use the following start command to ensure the
-`wcr_api` package is importable:
-
-```bash
-PYTHONPATH=src uvicorn main:app --host 0.0.0.0 --port $PORT
-```
-
-### Running Tests
+## Tests
 
 Install development dependencies and run the test suite with coverage enabled.
 Running tests as a module ensures the package imports correctly and collects
@@ -54,6 +46,15 @@ coverage metrics:
 ```bash
 pip install -r requirements-dev.txt
 python -m pytest --cov=. --cov-report=term-missing:skip-covered
+```
+
+## Deployment
+
+Deployments on Railway use the following start command to ensure the
+`wcr_api` package is importable:
+
+```bash
+PYTHONPATH=src uvicorn main:app --host 0.0.0.0 --port $PORT
 ```
 
 ### Code style
@@ -123,7 +124,7 @@ curl -L https://wcr-api.up.railway.app/units > data/units.json
 curl -L https://wcr-api.up.railway.app/categories > data/categories.json
 ```
 
-## Hosted API
+### Hosted API
 
 The API is also deployed and accessible under:
 
