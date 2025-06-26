@@ -26,6 +26,14 @@ pip install -r requirements-dev.txt
 PYTHONPATH=src uvicorn main:app --reload
 ```
 
+## Utility Scripts
+
+The `scripts/` directory contains helper tools. Run them with
+`python scripts/<name>.py`. Available scripts:
+
+- `list_units.py` – list all unit IDs or display a single unit when passing an
+  ID argument.
+
 Structured logging is initialised during the application's lifespan using
 ``structlog``. Logs are emitted in JSON format and written both to stdout and
 ``logs/api.log``. The log level defaults to ``INFO`` but can be changed by
@@ -79,11 +87,11 @@ materials. CI runs the same hooks and then streams Railway logs with
 `railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
 If more logs are needed, trigger the `Railway Logs` workflow from the Actions
-tab to capture production logs for the `bot` service.
+tab to capture the latest production logs.
 
 ### Security scanning
 
-CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
+CI installs the Snyk CLI via `npm install -g snyk` and runs `snyk test`.
 Authentication is provided via the `SNYK_TOKEN` environment variable set as a
 repository secret. Pull requests from forks do not receive secrets, therefore
 the Snyk step is skipped in that scenario.

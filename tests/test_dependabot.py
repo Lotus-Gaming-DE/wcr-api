@@ -11,4 +11,8 @@ def test_dependabot_config_valid():
     ecosystems = {u["package-ecosystem"] for u in data.get("updates", [])}
     assert {"pip", "github-actions"} <= ecosystems
     for update in data.get("updates", []):
-        assert update.get("schedule", {}).get("interval") == "daily"
+        interval = update.get("schedule", {}).get("interval")
+        if update.get("package-ecosystem") == "pip":
+            assert interval == "daily"
+        elif update.get("package-ecosystem") == "github-actions":
+            assert interval == "weekly"
