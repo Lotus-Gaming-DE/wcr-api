@@ -8,3 +8,4 @@ ruff
 pip-audit
 bandit
 pyyaml
+cyclonedx-bom==6.1.1
