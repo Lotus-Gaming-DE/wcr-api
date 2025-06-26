@@ -42,6 +42,7 @@ All notable changes to this project will be documented in this file.
 - CI streams Railway logs to `logs/latest_railway.log` and uploads the file as
   an artifact.
 - Dependabot update schedule changed to daily.
+- Pinned `pip-audit` to version 2.9.0 for consistent SBOM generation.
 
 ### Removed
 - Empty `app/__init__.py` module as namespace packages are supported.
