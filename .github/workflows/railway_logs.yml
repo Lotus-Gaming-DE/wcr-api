@@ -14,10 +14,6 @@ jobs:
           node-version: 20
       - name: Install Railway CLI
         run: npm install -g @railway/cli
-      - name: Login to Railway
-        run: railway login --apiKey "$RAILWAY_TOKEN"
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Stream railway logs
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

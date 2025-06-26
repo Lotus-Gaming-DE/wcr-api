@@ -34,8 +34,9 @@ All notable changes to this project will be documented in this file.
 - Utility script `scripts/fetch_data.py` to download sample data.
 - Updated CI workflow to install Snyk via npm and generate SBOM with cyclonedx-py.
 - Dependabot action updates now run weekly.
-- CI workflow installs Railway CLI from `@railway/cli` and authenticates
-  using `railway login --apiKey` before streaming logs.
+- CI workflow installs Railway CLI from `@railway/cli` and uses the
+  `RAILWAY_TOKEN` environment variable for authentication when
+  streaming logs.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.

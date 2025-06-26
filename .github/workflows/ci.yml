@@ -54,10 +54,6 @@ jobs:
         run: snyk test
       - name: Install Railway CLI
         run: npm install -g @railway/cli
-      - name: Login to Railway
-        run: railway login --apiKey "$RAILWAY_TOKEN"
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Lint
         run: pre-commit run --all-files
       - name: Test
