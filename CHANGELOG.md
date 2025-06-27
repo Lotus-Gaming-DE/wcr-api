@@ -26,6 +26,8 @@ All notable changes to this project will be documented in this file.
 - Dependabot configuration for Python and GitHub Actions updates.
 - Clarifying comments in middleware, data loading and tests.
 - Comment describing `LOG_LEVEL` in `.env.example`.
+- `DATA_DIR` environment variable for custom data locations and bundled test
+  dataset under `tests/data`.
 - Documentation sections describing Dependabot usage and Snyk scanning via
   `SNYK_TOKEN`.
 - Example ``.env.example`` file.

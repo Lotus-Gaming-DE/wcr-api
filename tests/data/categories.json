@@ -1,0 +1,72 @@
+{
+  "factions": [
+    {
+      "id": "alliance",
+      "names": {
+        "en": "Alliance",
+        "de": "Allianz"
+      }
+    },
+    {
+      "id": "beast",
+      "names": {
+        "en": "Beast",
+        "de": "Bestien"
+      }
+    }
+  ],
+  "types": [
+    {
+      "id": "leader",
+      "names": {
+        "en": "Leader",
+        "de": "Anf\u00fchrer"
+      }
+    },
+    {
+      "id": "spell",
+      "names": {
+        "en": "Spell",
+        "de": "Zauber"
+      }
+    }
+  ],
+  "traits": [
+    {
+      "id": "ambush",
+      "names": {
+        "en": "Ambush",
+        "de": "Hinterhalt"
+      },
+      "descriptions": {
+        "en": "Double damage when attacking from Stealth."
+      }
+    },
+    {
+      "id": "aoe",
+      "names": {
+        "en": "AoE",
+        "de": "Fl\u00e4chenschaden"
+      },
+      "descriptions": {
+        "en": "Deals area damage."
+      }
+    }
+  ],
+  "speeds": [
+    {
+      "id": "fast",
+      "names": {
+        "en": "Fast",
+        "de": "Schnell"
+      }
+    },
+    {
+      "id": "med-fast",
+      "names": {
+        "en": "Med-Fast",
+        "de": "Mittelschnell"
+      }
+    }
+  ]
+}

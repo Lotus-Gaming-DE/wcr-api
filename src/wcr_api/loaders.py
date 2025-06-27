@@ -1,6 +1,7 @@
 """Utility for loading unit data from JSON files."""
 
 import json
+import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -95,8 +96,11 @@ def get_data_loader() -> DataLoader:
     if data_loader is None:
         # resolve the project's root directory and locate the bundled data
         # files. ``parents[2]`` yields the repository root when called from
-        # inside ``src/wcr_api``.
-        data_dir = Path(__file__).resolve().parents[2] / "data"
+        # inside ``src/wcr_api``. This path can be overridden via the
+        # ``DATA_DIR`` environment variable to support tests and other
+        # environments.
+        default_dir = Path(__file__).resolve().parents[2] / "data"
+        data_dir = Path(os.getenv("DATA_DIR", default_dir))
         data_loader = DataLoader(data_dir)
         data_loader.load()
     return data_loader
