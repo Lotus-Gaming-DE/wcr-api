@@ -37,6 +37,8 @@ All notable changes to this project will be documented in this file.
 - CI workflow installs Railway CLI from `@railway/cli` and uses the
   `RAILWAY_TOKEN` environment variable for authentication when
   streaming logs.
+- CI and Railway Logs workflow capture logs without the deprecated
+  `--follow` argument.
 
 ### Changed
 - Unit ID path parameter now accepts hyphenated IDs.
