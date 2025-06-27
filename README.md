@@ -83,15 +83,15 @@ tab to capture production logs for the `bot` service.
 
 ### Security scanning
 
-CI installs the Snyk CLI with `snyk/actions/setup@v1` and runs `snyk test`.
-Authentication is provided via the `SNYK_TOKEN` environment variable set as a
-repository secret. Pull requests from forks do not receive secrets, therefore
-the Snyk step is skipped in that scenario.
+CI installs the Snyk CLI via `npm install -g snyk` and runs `snyk test`.
+Authentication is provided with the `SNYK_TOKEN` secret. Pull requests from
+forks do not receive secrets so the Snyk step is skipped for them.
 
 ### Automatic dependency updates
 
 Dependabot checks `requirements*.txt` and workflow files as configured in
-`.github/dependabot.yml`. It opens daily pull requests that trigger the full CI
+`.github/dependabot.yml`. It opens daily pull requests for Python
+dependencies and weekly ones for GitHub Actions that trigger the full CI
 pipeline with linting, tests and `pip-audit`. These updates run the same
 workflow as any other pull request ensuring quality gates are met. CI caches
 pip downloads and pre-commit hooks for faster runs and stores build logs under
@@ -125,6 +125,16 @@ refresh the contents, download the latest data from the live API:
 curl -L https://wcr-api.up.railway.app/units > data/units.json
 curl -L https://wcr-api.up.railway.app/categories > data/categories.json
 ```
+
+### Utility Scripts
+
+`scripts/fetch_data.py` automates downloading these files:
+
+```bash
+python scripts/fetch_data.py --base-url https://wcr-api.up.railway.app --output-dir data
+```
+
+Run with `--help` for more options.
 
 ### Hosted API
 
