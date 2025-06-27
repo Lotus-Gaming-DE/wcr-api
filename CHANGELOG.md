@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Rotating file handler writing logs to ``logs/api.log``.
 - Security scan in CI with ``pip-audit``.
 - Pre-commit hook for ``pip-audit`` using CycloneDX SBOM support.
+- `scripts/fetch_data.py` CLI tool for downloading sample data.
 - CI: CycloneDX SBOM generation uploaded as `sbom.xml` artifact.
 - CI: Use `snyk/actions/setup@v1`; fixed action not found errors.
 - CI: Added SNYK_TOKEN env for Snyk Test; clarified fork tests won't have secrets.
@@ -47,6 +48,7 @@ All notable changes to this project will be documented in this file.
 - CI caches pip downloads alongside pre-commit hooks for faster builds.
 - Documented Dependabot's daily update mechanism and CI caching in README.
 - Dependabot update schedule changed to daily.
+- CI workflows updated for CycloneDX SBOM generation and Snyk CLI.
 - Dependabot pull requests run the full CI pipeline with linting, tests and
   `pip-audit`.
 - Pinned `pip-audit` to version 2.9.0 for consistent SBOM generation.

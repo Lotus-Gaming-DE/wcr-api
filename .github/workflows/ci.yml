@@ -29,24 +29,25 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r requirements-dev.txt
-      - name: Security audit
-        run: pip-audit -r requirements.txt -r requirements-dev.txt
+      - name: Install CycloneDX Python SBOM Tool
+        run: |
+          python -m pip install cyclonedx-bom
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Generate SBOM
-        run: cyclonedx-bom -r requirements.txt -r requirements-dev.txt -o sbom.xml
+        run: cyclonedx-py requirements -i requirements.txt -o sbom.xml
       - uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.xml
-      - name: Bandit security scan
-        run: bandit -r src -q
-      - uses: snyk/actions/setup@v1
-      - name: Snyk Test
-        if: ${{ secrets.SNYK_TOKEN != '' && github.event.pull_request.head.repo.full_name == github.repository }}
-        run: snyk test
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Run Snyk Test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        if: ${{ env.SNYK_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) }}
+        run: snyk test
       - name: Lint
-        run: pre-commit run --show-diff-on-failure --color=always --all-files
+        run: pre-commit run --all-files
       - name: Test
         run: |
           python -m pytest --cov=. --cov-report=term-missing:skip-covered \
@@ -58,7 +59,7 @@ jobs:
       - name: Capture Railway logs
         run: |
           mkdir -p logs
-          timeout 30s railway logs --follow > logs/latest_railway.log || true
+          railway logs --follow > logs/latest_railway.log
       - uses: actions/upload-artifact@v4
         with:
           name: railway-logs

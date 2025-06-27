@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - name: Install Railway CLI
         run: npm install -g railway
       - name: Login to Railway
@@ -21,7 +17,7 @@ jobs:
       - name: Stream production logs
         run: |
           mkdir -p logs
-          railway logs --environment production --service bot --detach > logs/latest_railway.log || true
+          railway logs --follow > logs/latest_railway.log
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - uses: actions/upload-artifact@v4
