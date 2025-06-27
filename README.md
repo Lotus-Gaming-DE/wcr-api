@@ -15,7 +15,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 - Python 3.11
 - HTTPX for the FastAPI test client (installed via `requirements.txt`)
 - Copy `.env.example` to `.env` to customise configuration such as
-  ``LOG_LEVEL``.
+  ``LOG_LEVEL`` and ``DATA_DIR`` which defines where JSON data is read.
 
 Install dependencies and start the application with `uvicorn`. For
 formatting, linting and running tests install the development requirements:
@@ -115,18 +115,12 @@ trace. Requests for unknown unit IDs return a 404 response containing
 
 ### Data files
 
-Example JSON data for local development resides in `data/units.json` and
-`data/categories.json`. The `data/` directory is gitignored so you can replace
-these files without committing them. If the directory is missing or you wish to
-refresh the contents, download the latest data from the live API:
-
+Example JSON data for local development is not committed. Define ``DATA_DIR``
+in your environment to point to a directory containing ``units.json`` and
+``categories.json``. To populate this directory download the files from the
+live API or run the helper script:
 ```bash
-curl -L https://wcr-api.up.railway.app/units > data/units.json
-curl -L https://wcr-api.up.railway.app/categories > data/categories.json
-```
-Alternatively run the helper script:
-```bash
-python scripts/fetch_data.py
+python scripts/fetch_data.py --output-dir ./data
 ```
 
 
