@@ -76,10 +76,9 @@ The `pip-audit` hook (version `2.9.0`) scans `requirements.txt` and
 outputs a column formatted report. It installs `pip-audit[cyclonedx]`
 and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
 materials. CI runs the same hooks and then streams Railway logs with
-`railway logs --follow > logs/latest_railway.log` which is uploaded as a
-build artifact.
-If more logs are needed, trigger the `Railway Logs` workflow from the Actions
-tab to capture production logs for the `bot` service.
+`npx railway logs --service $RAILWAY_SERVICE --project $RAILWAY_PROJECT --env production --json > logs/latest_railway.log`
+which is uploaded as a build artifact. If more logs are needed, trigger the
+`Railway Logs` workflow from the Actions tab to capture production logs.
 
 ### Security scanning
 
@@ -125,6 +124,11 @@ refresh the contents, download the latest data from the live API:
 curl -L https://wcr-api.up.railway.app/units > data/units.json
 curl -L https://wcr-api.up.railway.app/categories > data/categories.json
 ```
+Alternatively run the helper script:
+```bash
+python scripts/fetch_data.py
+```
+
 
 ### Hosted API
 
@@ -181,3 +185,7 @@ unit = requests.get(f"{base_url}/units/ancient-of-war").json()
 # categories
 categories = requests.get(f"{base_url}/categories").json()
 ```
+
+## Utility Scripts
+
+- `scripts/fetch_data.py` – download the latest units and categories for local development.
