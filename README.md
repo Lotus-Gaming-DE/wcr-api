@@ -81,11 +81,10 @@ pre-commit run --all-files
 The `pip-audit` hook (version `2.9.0`) scans `requirements.txt` and
 outputs a column formatted report. It installs `pip-audit[cyclonedx]`
 and `cyclonedx-bom` so CI can generate a CycloneDX software bill of
- materials. CI installs the Railway CLI from `@railway/cli`, which
- automatically authenticates via the `RAILWAY_TOKEN` environment variable,
- runs the same
+ materials. CI installs the Railway CLI, logs in with
+`railway login --apiKey "$RAILWAY_TOKEN"`, runs the same
 hooks, and then streams Railway logs with
-`railway logs > logs/latest_railway.log` which is uploaded as a
+`railway logs --follow > logs/latest_railway.log` which is uploaded as a
 build artifact.
 If more logs are needed, trigger the `Railway Logs` workflow from the Actions
 tab to capture production logs for the `bot` service.

@@ -53,7 +53,11 @@ jobs:
         if: ${{ env.SNYK_TOKEN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) }}
         run: snyk test
       - name: Install Railway CLI
-        run: npm install -g @railway/cli
+        run: npm install -g railway
+      - name: Login to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway login --apiKey "$RAILWAY_TOKEN"
       - name: Lint
         run: pre-commit run --all-files
       - name: Test
@@ -69,7 +73,7 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           mkdir -p logs
-          railway logs > logs/latest_railway.log
+          railway logs --follow > logs/latest_railway.log
       - uses: actions/upload-artifact@v4
         with:
           name: railway-logs
