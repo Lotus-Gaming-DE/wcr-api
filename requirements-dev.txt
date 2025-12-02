@@ -6,7 +6,7 @@ pytest-timeout
 pytest-asyncio
 pre-commit
 ruff
-pip-audit==2.9.0
+pip-audit==2.10.0
 bandit
 pyyaml
 cyclonedx-bom==6.1.2
