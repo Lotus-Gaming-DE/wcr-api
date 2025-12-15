@@ -20,7 +20,7 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_SERVICE: ${{ secrets.RAILWAY_SERVICE }}
           RAILWAY_PROJECT: ${{ secrets.RAILWAY_PROJECT }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: railway-latest-log
           path: logs/latest_railway.log
