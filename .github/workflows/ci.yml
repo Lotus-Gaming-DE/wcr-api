@@ -35,7 +35,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Generate SBOM
         run: cyclonedx-py requirements -i requirements.txt -o sbom.xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: sbom
           path: sbom.xml
@@ -52,7 +52,7 @@ jobs:
         run: |
           python -m pytest --cov=. --cov-report=term-missing:skip-covered \
             --cov-report=xml --cov-fail-under=90
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: coverage
           path: coverage.xml
@@ -64,7 +64,7 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_SERVICE: ${{ secrets.RAILWAY_SERVICE }}
           RAILWAY_PROJECT: ${{ secrets.RAILWAY_PROJECT }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: railway-logs
           path: logs/latest_railway.log
